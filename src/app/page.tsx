@@ -1,113 +1,122 @@
-import Image from "next/image";
+"use client";
+import { Dispatch, SetStateAction, useState, useEffect } from "react";
+
+function RedoIcon() {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      className="size-10"
+    >
+      <path
+        fillRule="evenodd"
+        d="M4.755 10.059a7.5 7.5 0 0 1 12.548-3.364l1.903 1.903h-3.183a.75.75 0 1 0 0 1.5h4.992a.75.75 0 0 0 .75-.75V4.356a.75.75 0 0 0-1.5 0v3.18l-1.9-1.9A9 9 0 0 0 3.306 9.67a.75.75 0 1 0 1.45.388Zm15.408 3.352a.75.75 0 0 0-.919.53 7.5 7.5 0 0 1-12.548 3.364l-1.902-1.903h3.183a.75.75 0 0 0 0-1.5H2.984a.75.75 0 0 0-.75.75v4.992a.75.75 0 0 0 1.5 0v-3.18l1.9 1.9a9 9 0 0 0 15.059-4.035.75.75 0 0 0-.53-.918Z"
+        clipRule="evenodd"
+      />
+    </svg>
+  );
+}
 
 export default function Home() {
+  const [text, setText] = useState("");
+  const [submittedText, setSubmittedText] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setSubmittedText(text);
+    setIsSubmitted(true);
+  };
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
+    <main className="grid min-h-screen flex-col place-items-center">
+      {isSubmitted ? (
+        <WordDisplay text={submittedText} wordsPerMinute={400} />
+      ) : (
+        <TextBox text={text} setText={setText} handleSubmit={handleSubmit} />
+      )}
     </main>
+  );
+}
+
+interface TextBoxProps {
+  text: string;
+  setText: Dispatch<SetStateAction<string>>;
+  handleSubmit: (e: React.FormEvent) => void;
+}
+
+function TextBox({ text, setText, handleSubmit }: TextBoxProps) {
+  return (
+    <form
+      onSubmit={handleSubmit}
+      className="flex flex-col justify-center items-center space-y-2 w-screen h-screen"
+    >
+      <textarea
+        value={text}
+        onChange={(e) => setText(e.target.value)}
+        className="p-2 border border-gray-300 text-black w-screen h-screen text-justify text-wrap text-2xl"
+      />
+      <button
+        type="submit"
+        className="p-2 bg-blue-500 font-semibold text-xl text-white w-screen"
+      >
+        Submit
+      </button>
+    </form>
+  );
+}
+
+interface WordDisplayProps {
+  text: string;
+  wordsPerMinute: number;
+}
+
+function WordDisplay({ text, wordsPerMinute }: WordDisplayProps) {
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const words = text.split(" ");
+
+  useEffect(() => {
+    // Only start the word display if it's not complete
+    if (!isComplete) {
+      const interval = setInterval(() => {
+        setCurrentWordIndex((prevIndex) => {
+          if (prevIndex < words.length - 1) {
+            return prevIndex + 1;
+          } else {
+            clearInterval(interval); // Stop the interval once we reach the end
+            setIsComplete(true); // Mark the display as complete
+            return prevIndex;
+          }
+        });
+      }, (60 / wordsPerMinute) * 1000);
+
+      // Cleanup interval on component unmount or when restarting
+      return () => clearInterval(interval);
+    }
+  }, [isComplete, words.length, wordsPerMinute]);
+
+  const handleRedo = () => {
+    setCurrentWordIndex(0); // Reset the word index to the beginning
+    setIsComplete(false); // Set the completion flag to false to restart the display
+  };
+
+  return (
+    <div className="flex flex-col justify-center items-center w-screen h-screen">
+      {!isComplete ? (
+        <p className="text-6xl text-center font-semibold">
+          {words[currentWordIndex]}
+        </p>
+      ) : (
+        <button
+          onClick={handleRedo}
+          className="flex flex-col justify-center items-center space-y-2"
+        >
+          <RedoIcon />
+          <span className="text-xl text-blue-500 font-semibold">Redo</span>
+        </button>
+      )}
+    </div>
   );
 }
